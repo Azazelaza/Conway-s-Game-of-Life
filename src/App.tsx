@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Square from './components/ui/Square';
 import ButtonsGame from './components/layout/ButtonsGame';
 import { numCols } from './utils/global';
-import { useGame } from './context/GameContext';
+import { useGame } from './hooks/useGame';
 
 const GameOfLife = () => {
   //* Se utiliza un estado adicional para el rendereo de los contextos 

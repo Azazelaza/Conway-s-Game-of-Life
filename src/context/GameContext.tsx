@@ -1,19 +1,6 @@
-import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import { numRows, numCols, initialState } from '../utils/global';
-
-interface GameContextType {
-  gridContext: boolean[][];
-  isRunning: boolean;
-  setGridContext: (grid: boolean[][]) => void;
-  setIsRunning: (isRunning: boolean) => void;
-  toggleCell: (row: number, col: number) => void;
-  nextGeneration: () => void;
-  resetGame: () => void;
-  setSpeedRun: (speedRun: number) => void;
-  speedRun: number;
-}
-
-const GameContext = createContext<GameContextType | undefined>(undefined);
+import { GameContext } from '../hooks/useGame';
 
 export function GameProvider({ children }: { children: ReactNode }) {
   const [gridContext, setGridContext] = useState(initialState);
@@ -88,12 +75,4 @@ export function GameProvider({ children }: { children: ReactNode }) {
       {children}
     </GameContext.Provider>
   );
-}
-
-export function useGame() {
-  const context = useContext(GameContext);
-  if (context === undefined) {
-    throw new Error('useGame must be used within a GameProvider');
-  }
-  return context;
 }

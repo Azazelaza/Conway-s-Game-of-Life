@@ -1,4 +1,4 @@
-import { useGame } from '../../context/GameContext';
+import { useGame } from "../../hooks/useGame";
 
 export default function ButtonsGame() {
     const { isRunning, setIsRunning, resetGame, setSpeedRun, speedRun } = useGame();
