@@ -1,13 +1,15 @@
+import { useGame } from "../../context/GameContext"
 
 type SquareProps = {
     row: number
     col: number
-    cell: any
-    toggleCell: any
+    cell: number
 }
 
-export default function Square({ row, col, cell, toggleCell }: SquareProps) {
+export default function Square({ row, col, cell }: SquareProps) {
     const color = ["white", "black"]
+    const { toggleCell } = useGame();
+    
     return (
         <div
             draggable="false"

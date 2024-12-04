@@ -1,11 +1,9 @@
 import { useState } from 'react'
+import { useGame } from '../../context/GameContext';
 
 
-export default function ButtonsGame({
-    setIsRunning,
-    isRunning,
-    resetGame
-}: any) {
+export default function ButtonsGame() {
+    const { isRunning, setIsRunning, resetGame } = useGame();
     const [value, setValue] = useState<number>(10);
     const Running = ["Iniciar", "Pausar"];
 
