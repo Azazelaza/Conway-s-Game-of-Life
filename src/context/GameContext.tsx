@@ -9,6 +9,8 @@ interface GameContextType {
   toggleCell: (row: number, col: number) => void;
   nextGeneration: () => void;
   resetGame: () => void;
+  setSpeedRun: (speedRun: number) => void;
+  speedRun: number;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -16,6 +18,7 @@ const GameContext = createContext<GameContextType | undefined>(undefined);
 export function GameProvider({ children }: { children: ReactNode }) {
   const [gridContext, setGridContext] = useState(initialState);
   const [isRunning, setIsRunning] = useState(false);
+  const [speedRun, setSpeedRun] = useState<number>(100);
 
   const toggleCell = (row: number, col: number) => {
     const newGrid = gridContext.map((r, i) =>
@@ -64,9 +67,9 @@ export function GameProvider({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    const interval = setInterval(runGame, 100); // Actualiza cada 100ms
+    const interval = setInterval(runGame, speedRun); // Actualiza cada 100ms
     return () => clearInterval(interval);
-  }, [isRunning, gridContext]);
+  }, [isRunning, gridContext, speedRun]);
 
   return (
     <GameContext.Provider
@@ -75,6 +78,8 @@ export function GameProvider({ children }: { children: ReactNode }) {
         setGridContext,
         isRunning,
         setIsRunning,
+        setSpeedRun,
+        speedRun,
         toggleCell,
         nextGeneration,
         resetGame
