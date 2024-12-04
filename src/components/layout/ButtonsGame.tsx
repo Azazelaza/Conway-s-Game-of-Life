@@ -7,7 +7,6 @@ export default function ButtonsGame() {
     return (
         <div className='absolute bg-gray-900 right-0 p-6 w-1/3'>
             <h1 className='text-xl mb-4'>Conway's Game of Life</h1>
-
             <div className='border rounded p-4 mb-4'>
                 <p className='text-xl'>Tiempo</p>
                 <b>
