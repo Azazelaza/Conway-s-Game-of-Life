@@ -7,7 +7,7 @@ export default function ButtonsGame() {
     const [openOptions, setOpenOptions] = useState(true);
     return (
         <div className='absolute bg-gray-900 right-0 p-3 text-center w-80 select-none'>
-            <h1 className='text-xl cursor-pointer' onClick={()=>setOpenOptions(!openOptions)}>Conway's Game of Life ▼</h1>
+            <h1 className='text-xl cursor-pointer' onClick={() => setOpenOptions(!openOptions)}>Conway's Game of Life ▼</h1>
             {openOptions &&
                 <>
                     <div className='border rounded p-4 my-4'>

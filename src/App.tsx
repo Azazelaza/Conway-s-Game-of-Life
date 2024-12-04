@@ -17,7 +17,7 @@ const GameOfLife = () => {
   return (
     <div>
       <ButtonsGame />
-      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${numCols}, 20px)` }}>
+      <div className="grid" style={{gridTemplateColumns: `repeat(${numCols}, 20px)`}}>
         {grid?.map((row, rowIndex) =>
           row.map((cell, colIndex) => (
             <Square

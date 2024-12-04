@@ -12,12 +12,10 @@ export default function Square({ row, col, cell }: SquareProps) {
     
     return (
         <div
-            draggable="false"
-            key={`${row}-${col}`}
             data-column={col}
-            onClick={() => toggleCell(row, col)}
             data-row={row}
-            className="w-5 h-5 border"
+            onClick={() => toggleCell(row, col)}
+            className="w-5 h-5 border border-zinc-300"
             style={{
                 backgroundColor: color[cell]
             }}
