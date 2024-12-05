@@ -7,14 +7,13 @@ export function GameProvider({ children }: { children: ReactNode }) {
   const [isRunning, setIsRunning] = useState(false);
   const [speedRun, setSpeedRun] = useState<number>(100);
 
-  const toggleCell = (row: number, col: number) => {
-    const newGrid = gridContext.map((r, i) =>
-      r.map((cell, j) => (i === row && j === col ? !cell : cell))
-    );
-    setGridContext(newGrid);
-  };
+  const setGrid = (grid:any) => {
+    console.log('este es el grid', grid)
+    setGridContext(grid)
+  }
 
   const nextGeneration = () => {
+    console.log('antes de la nueva generacion este es mi grid', gridContext)
     const newGrid = gridContext.map((row, rowIndex) =>
       row.map((cell, colIndex) => {
         const neighbors = [
@@ -42,11 +41,6 @@ export function GameProvider({ children }: { children: ReactNode }) {
     return newGrid;
   };
 
-  const resetGame = () => {
-    setGridContext(initialState);
-    setIsRunning(false);
-  };
-
   const runGame = () => {
     if (isRunning) {
       setGridContext(nextGeneration());
@@ -62,14 +56,12 @@ export function GameProvider({ children }: { children: ReactNode }) {
     <GameContext.Provider
       value={{
         gridContext,
-        setGridContext,
+        setGrid,
         isRunning,
         setIsRunning,
         setSpeedRun,
         speedRun,
-        toggleCell,
         nextGeneration,
-        resetGame
       }}
     >
       {children}

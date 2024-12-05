@@ -1,11 +1,21 @@
 export interface GameContextType {
-    gridContext: boolean[][];
+    /* gridContext: boolean[][];
     isRunning: boolean;
     setGridContext: (grid: boolean[][]) => void;
     setIsRunning: (isRunning: boolean) => void;
-    toggleCell: (row: number, col: number) => void;
     nextGeneration: () => void;
-    resetGame: () => void;
     setSpeedRun: (speedRun: number) => void;
-    speedRun: number;
+    speedRun: number; */
+    [key:string]: any
+}
+
+export interface ControlContextType {
+    //Provitional
+    [key: string]: any
+}
+
+export type SquareProps = {
+    row: number
+    col: number
+    cell: boolean
 }
