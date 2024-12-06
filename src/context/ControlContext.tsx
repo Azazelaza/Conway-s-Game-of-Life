@@ -4,7 +4,7 @@ import { useGame } from "../hooks/useGame";
 import { ControlContext } from "../hooks/useControl";
 
 export function ControlProvider({ children }: { children: ReactNode }) {
-    const { setGridContext, gridContext, setIsRunning } = useGame();
+    const { setGridContext, gridContext, setIsRunning, nextGeneration } = useGame();
     const [multipleSelect, setMultipleSelect] = useState([]);
 
     const [mouseDown, setMouseDown] = useState<boolean>(false);
@@ -13,6 +13,9 @@ export function ControlProvider({ children }: { children: ReactNode }) {
         setIsRunning(false);
         setGridContext(Array.from({ length: numRows }, () => Array(numCols).fill(false)));
     };
+    const nextStep = () => {
+        nextGeneration();
+    }
 
     useEffect(() => {
         if (!mouseDown && multipleSelect.length > 0) {
@@ -25,6 +28,7 @@ export function ControlProvider({ children }: { children: ReactNode }) {
         }
     }, [mouseDown])
 
+
     useEffect(() => {
         window.addEventListener('mousedown', () => setMouseDown(true))
         window.addEventListener('mouseup', () => setMouseDown(false))
@@ -36,7 +40,8 @@ export function ControlProvider({ children }: { children: ReactNode }) {
                 resetGame,
                 mouseDown,
                 multipleSelect,
-                setMultipleSelect
+                setMultipleSelect,
+                nextStep
             }}
         >
             {children}

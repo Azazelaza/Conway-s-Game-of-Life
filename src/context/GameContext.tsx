@@ -4,10 +4,12 @@ import { GameContext } from '../hooks/useGame';
 
 export function GameProvider({ children }: { children: ReactNode }) {
   const [gridContext, setGridContext] = useState(initialState);
+  const [prevGrid, setPrevGrid] = useState(initialState)
   const [isRunning, setIsRunning] = useState(false);
   const [speedRun, setSpeedRun] = useState<number>(100);
 
   const nextGeneration = () => {
+    setPrevGrid(gridContext);
     const newGrid = gridContext.map((row, rowIndex) =>
       row.map((cell, colIndex) => {
         const neighbors = [
@@ -56,6 +58,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
         setSpeedRun,
         speedRun,
         nextGeneration,
+        prevGrid,
       }}
     >
       {children}
