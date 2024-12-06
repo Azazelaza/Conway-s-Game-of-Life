@@ -12,12 +12,7 @@ const GameOfLife = () => {
   //* Se agrega el useEffect para poder utilizar las propiedades actualizadas del contexto
   useEffect(() => {
     setGrid(gridContext)
-    console.log('este es mi nuevo grid', gridContext)
   }, [gridContext])
-
-  useEffect(()=>{
-    console.log(grid, 'este es el grid que se muestra')
-  },[grid])
 
   return (
     <div>

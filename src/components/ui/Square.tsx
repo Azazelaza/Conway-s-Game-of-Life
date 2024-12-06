@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import { SquareProps } from "../../types/types"
 import { useControl } from "../../hooks/useControl";
+import { useGame } from "../../hooks/useGame";
 
-export default function Square({ row, col, cell }: SquareProps) {
+export default function Square({ row, col }: SquareProps) {
     const color = ["white", "black"];
-    const [selected, setSelected] = useState(cell);
+    const [selected, setSelected] = useState(false);
     const { mouseDown, setMultipleSelect } = useControl();
+    const { gridContext } = useGame();
 
     const detectClick = () => {
-        if (selected === cell && mouseDown) {
-            setSelected(!cell);
-            setMultipleSelect((prev) => [...prev, { [row]: col }])
+        if (mouseDown) {
+            setSelected(!gridContext[row][col])
+            setMultipleSelect((prev: any) => [...prev, { [row]: col }])
         }
     }
+
+    useEffect(() => {
+        setSelected(gridContext[row][col])
+    }, [gridContext])
 
     return (
         <div
@@ -21,7 +27,7 @@ export default function Square({ row, col, cell }: SquareProps) {
             onMouseEnter={detectClick}
             className="w-5 h-5 border border-zinc-300 select-none"
             style={{
-                backgroundColor: selected == cell ? color[Number(cell)] : color[Number(selected)]
+                backgroundColor: color[Number(selected)]
             }}
         />
     )
