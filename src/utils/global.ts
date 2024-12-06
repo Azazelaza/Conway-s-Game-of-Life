@@ -1,3 +1,3 @@
-export const numRows = 30;
-export const numCols = 50;
+export const numCols = Math.floor(document.body.offsetWidth / 20);
+export const numRows = Math.floor(document.body.offsetHeight / 20);
 export const initialState = Array.from({ length: numRows }, () => Array(numCols).fill(false))
